@@ -30,7 +30,7 @@ class ResultMapperTest {
         ResultDto dto = new ResultDto("LW", 0.51);
         ResultEntity entity = resultMapper.toDto(dto);
 
-        assertNull(entity.getId()); // el ID lo dejo null al crear desde DTO
+        assertNull(entity.getId()); //  ID = null to create from DTO
         assertEquals("LW", entity.getSequence());
         assertEquals(0.51, entity.getProbability());
     }

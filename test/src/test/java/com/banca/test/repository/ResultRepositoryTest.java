@@ -18,28 +18,28 @@ public class ResultRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        // Limpiar la base de datos antes de cada test (opcional)
+        // clean DB before each test
         resultRepository.deleteAll();
     }
 
     @Test
     @Transactional
     public void testSaveAndFindResultEntity() {
-        // Crear una nueva entidad
+        // Create new entity
         ResultEntity resultEntity = new ResultEntity();
         resultEntity.setSequence("WLW");
         resultEntity.setProbability(0.75);
 
-        // Guardar en la base de datos
+        // Save in DB
         ResultEntity savedEntity = resultRepository.save(resultEntity);
 
-        // Verificar que el ID se haya generado automáticamente
+        // Verify that the ID has been generated automatically
         assertNotNull(savedEntity.getId(), "The ID should not be null");
 
-        // Recuperar la entidad de la base de datos
+        // Retrieve the entity from the database
         ResultEntity foundEntity = resultRepository.findById(savedEntity.getId()).orElse(null);
 
-        // Verificar que la entidad fue encontrada y los valores sean correctos
+        // Verify that the entity was found and the values are correct
         assertNotNull(foundEntity, "The entity should be found");
         assertEquals("WLW", foundEntity.getSequence(), "The sequence should be WLW");
         assertEquals(0.75, foundEntity.getProbability(), "The probability should be 0.75");
